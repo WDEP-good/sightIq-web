@@ -1,0 +1,8 @@
+**/target
+main.exe
+node_modules
+**/.idea
+**/.vscode
+**/runs
+**/dist
+**/build
