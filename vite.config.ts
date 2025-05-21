@@ -25,7 +25,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       viteMockServe({
         mockPath: 'mock',
         watchFiles: true,
-        enable: true
+        enable: true,
+        logger: true,
       }),
     ],
     resolve: {
