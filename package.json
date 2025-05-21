@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite --open",
+        "dev": "vite",
         "build": "vue-tsc && vite build",
         "preview": "vite preview"
     },
@@ -22,6 +22,7 @@
         "echarts": "^5.5.0",
         "element-plus": "^2.7.0",
         "less": "^4.2.0",
+        "mockjs": "^1.1.0",
         "path": "^0.12.7",
         "pinia": "^2.1.7",
         "tsparticles": "^3.3.0",
@@ -35,6 +36,7 @@
         "fast-glob": "^3.3.2",
         "typescript": "^5.2.2",
         "vite": "^5.2.0",
+        "vite-plugin-mock": "^3.0.2",
         "vite-plugin-svg-icons": "^2.0.1",
         "vue-tsc": "^2.0.6"
     },

@@ -3,7 +3,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-
+import { viteMockServe } from 'vite-plugin-mock'
 
 // 配置svg路径
 const pathResolve = (pathStr: any) => {
@@ -15,13 +15,17 @@ const pathResolve = (pathStr: any) => {
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = loadEnv(mode, process.cwd())
-  console.log(env.VITE_APP_SERVICE_URL,"121231")
   return {
     plugins: [
       vue(),
       createSvgIconsPlugin({
         iconDirs: [pathResolve('@/../public/svg')],
         symbolId: 'icon-[dir]-[name]',
+      }),
+      viteMockServe({
+        mockPath: 'mock',
+        watchFiles: true,
+        enable: true
       }),
     ],
     resolve: {
