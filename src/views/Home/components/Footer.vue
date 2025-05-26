@@ -1,5 +1,6 @@
 <template>
     <div class="footer">
+        footer
         <!-- <div id="chartfooterdemo1"></div> -->
     </div>
 </template>
@@ -28,10 +29,4 @@ onMounted (() => {
 </script>
 
 <style scoped>
-.footer{
-    width: 100vw;
-    height: 100vh;
-    background-color: red;
-}
-
 </style>

@@ -1,24 +1,25 @@
 <template>
-  <el-row>
-    <el-col :span="24"><Header /></el-col
-  ></el-row>
-  <el-row :gutter="20">
-    <el-col :span="8">
-      <RouterView name="right" />
-    </el-col>
-    <el-col :span="8"></el-col>
-    <el-col :span="8"> <RouterView name="left" /></el-col>
-  </el-row>
+  <el-container>
+    <el-header><Header /></el-header>
+    <LayoutContainer />
+  </el-container>
 </template>
 
 <script setup>
-import HomeBg from "@/components/homeBg.vue";
-import LoginBg from "@/components/loginBg.vue";
-import { RouterView } from "vue-router";
 import Header from "@/components/Header.vue";
+import Footer from "@/views/Home/components/Footer.vue";
+import LayoutContainer from "@/layout/layoutcontainer.vue";
 </script>
 
 <style scoped lang="less">
-@viewWith: 100vw;
-@viewheith: 100vh;
+.el-container {
+  height:auto;
+  .el-header {
+    margin: 10px;
+  }
+  .el-footer {
+    height: 25%;
+    margin: 10px;
+  }
+}
 </style>

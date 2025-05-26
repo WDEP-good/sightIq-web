@@ -55,11 +55,12 @@
     <script type="module" src="/src/main.ts"></script>
     <script>
         // 在应用挂载后移除加载动画
-        app.mount('#app')
-        const loadingWrapper = document.getElementById('loading-wrapper')
-        if (loadingWrapper) {
-            loadingWrapper.style.display = 'none'
-        }
+        window.addEventListener('load', () => {
+            const loadingWrapper = document.getElementById('loading-wrapper')
+            if (loadingWrapper) {
+                loadingWrapper.style.display = 'none'
+            }
+        })
     </script>
 </body>
 

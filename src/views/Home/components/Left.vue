@@ -1,6 +1,6 @@
 <template>
     <div class="left">
-        <div id="chartleft" style="width: 100%;min-height: 90vh;margin-top: 2vh;">
+        <div id="chartleft">
         </div>
     </div>
 </template>
@@ -408,11 +408,10 @@ let option = {
 </script>
 
 <style scoped lang="less">
-.left {
-    width: 100vw;
-    height: 100vh;
-    background-color: red;
+#chartleft {
+    width: 100%;
+    min-height: 80vh;
+    max-height: 90vh;
 }
-
 
 </style>

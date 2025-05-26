@@ -9,11 +9,16 @@ let routes = [
     name: "home",
     components: {
       default: () => import("@/layout/index.vue"),
-      // home: () => "@/views/Home/home.vue",
       right: () => import("@/views/Home/components/Right.vue"),
       left: () => import("@/views/Home/components/Left.vue"),
-      footer: () => import("@/views/Home/components/Footer.vue"),
     },
+    children: [
+      {
+        path: "/home/map",
+        name: "map",
+        component: () => import("@/components/homeBg.vue"),
+      },
+    ],
   },
   {
     path: "/Login",

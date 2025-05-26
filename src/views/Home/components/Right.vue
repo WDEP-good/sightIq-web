@@ -1,5 +1,6 @@
 <template>
     <div class="right">
+        right
             <div class="right_1"></div>
             <div class="right_2"></div>
             <div class="right_3"></div>
