@@ -12,18 +12,33 @@ onMounted(() => {
     let myChart = echarts.init(document.getElementById('chartleft'), null);
     myChart.showLoading();
     myChart.hideLoading();
+    
+    // 根据容器高度计算合适的显示条数
+    const calculateVisibleItems = () => {
+        const height = chartDom.clientHeight;
+        // 假设每个条目至少需要40px高度以便清晰显示
+        return Math.floor(height / 40);
+    };
+
+    let chartDom = myChart.getDom();
+    const visibleItems = calculateVisibleItems();
+    
+    // 更新dataZoomMove的初始值
+    dataZoomMove.start = 0;
+    dataZoomMove.end = visibleItems;
+
     const startMoveDataZoom = () => {
         dataZoomMoveTimer = setInterval(() => {
             dataZoomMove.start += 1;
             dataZoomMove.end += 1;
             if (dataZoomMove.end > data.value.length - 1) {
                 dataZoomMove.start = 0;
-                dataZoomMove.end = 10;
+                dataZoomMove.end = visibleItems;
             }
             myChart.setOption({
                 dataZoom: [
                     {
-                        type: "slider", // 有type这个属性，滚动条在最下面，也可以不行，写y：36，这表示距离顶端36px，一般就是在图上面。
+                        type: "slider",
                         startValue: dataZoomMove.start,
                         endValue: dataZoomMove.end,
                     },
@@ -32,7 +47,22 @@ onMounted(() => {
         }, 1000);
     };
     startMoveDataZoom()
-    let chartDom = myChart.getDom();
+
+    // 监听窗口大小变化
+    window.onresize = () => {
+        myChart.resize();
+        const newVisibleItems = calculateVisibleItems();
+        dataZoomMove.end = dataZoomMove.start + newVisibleItems;
+        myChart.setOption({
+            dataZoom: [
+                {
+                    startValue: dataZoomMove.start,
+                    endValue: dataZoomMove.end,
+                },
+            ],
+        });
+    };
+
     chartDom.addEventListener('mouseout', () => {
         // @ts-ignore 
         if (dataZoomMoveTimer) return;
@@ -48,7 +78,6 @@ onMounted(() => {
         dataZoomMoveTimer = undefined;
     })
     myChart.setOption(option);
-    window.onresize = myChart.resize;
 })
 
 // var yData1 =[
@@ -410,8 +439,11 @@ let option = {
 <style scoped lang="less">
 #chartleft {
     width: 100%;
-    min-height: 80vh;
-    max-height: 90vh;
+    height: 100%;
 }
 
+.left {
+    width: 100%;
+    height: 100%;
+}
 </style>

@@ -4,7 +4,7 @@
       <div id="chart"></div>
     </el-row>
     <el-row class="footer-row">
-      <Footer/>
+      <Footer />
     </el-row>
   </el-col>
 </template>
@@ -35,7 +35,7 @@ const mapFeatures = echarts.getMap(mapName).geoJson.features;
 onMounted(() => {
   let myChart = echarts.init(document.getElementById("chart"));
   myChart.showLoading();
-  
+
   // 确保地图数据加载完成
   setTimeout(() => {
     myChart.hideLoading();
@@ -49,8 +49,7 @@ onMounted(() => {
   });
   watch(
     toolTipData[0],
-    async (nextsource) => {
-      console.log(nextsource, 1);
+    async (_nextsource) => {
       let map = echarts.init(document.getElementById("chart"));
       let Getoption: any = map.getOption(); // 获取option数据
       Getoption.series[1].data = lineData(toolTipData); // 找到data修改数据
@@ -155,112 +154,23 @@ var Mapoption = {
             colorStops: [
               {
                 offset: 0,
-                color: "rgba(3,27,78,0.75)", // 0% 处的颜色
+                color: "rgba(3,27,78,0.75)",
               },
               {
                 offset: 1,
-                color: "rgba(58,149,253,0.75)", // 50% 处的颜色
+                color: "rgba(58,149,253,0.75)",
               },
             ],
-            global: true, // 缺省为 false
+            global: true,
           },
-          borderColor: "#c0f3fb",
+          borderColor: "rgba(192,243,251,0.5)",
           borderWidth: 1,
-          shadowColor: "#8cd3ef",
-          shadowOffsetY: 10,
-          shadowBlur: 120,
+          shadowColor: "rgba(140,211,239,0.3)",
+          shadowOffsetY: 5,
+          shadowBlur: 60,
         },
         emphasis: {
           areaColor: "rgba(0,254,233,0.6)",
-          // borderWidth: 0
-        },
-      },
-    },
-    {
-      type: "map",
-      map: mapName,
-      zlevel: -1,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "150%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor:"rgba(17, 149, 216,0.6)",
-          borderColor: "rgba(58,149,253,0.8)",
-          shadowColor: "rgba(172, 122, 255,0.5)",
-          shadowOffsetY: 5,
-          shadowBlur: 15,
-          areaColor: "rgba(5,21,35,0.1)",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: mapName,
-      zlevel: -2,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "200%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor: "rgba(57, 132, 188,0.4)",
-          borderColor: "rgba(58,149,253,0.6)",
-          shadowColor: "rgba(65, 214, 255,1)",
-          shadowOffsetY: 5,
-          shadowBlur: 15,
-          areaColor: "transpercent",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: mapName,
-      zlevel: -3,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "200%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor: "rgba(11, 43, 97,0.8)",
-          borderColor: "rgba(58,149,253,0.4)",
-          shadowColor: "rgba(58,149,253,1)",
-          shadowOffsetY: 15,
-          shadowBlur: 10,
-          areaColor: "transpercent",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: mapName,
-      zlevel: -4,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "200%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 5,
-          // borderColor: "rgba(11, 43, 97,0.8)",
-          borderColor: "rgba(5,9,57,0.8)",
-          shadowColor: "rgba(29, 111, 165,0.8)",
-          shadowOffsetY: 15,
-          shadowBlur: 10,
-          areaColor: "rgba(5,21,35,0.1)",
         },
       },
     },
@@ -297,16 +207,16 @@ var Mapoption = {
             colorStops: [
               {
                 offset: 0,
-                color: "rgba(3,27,78,0.75)", // 0% 处的颜色
+                color: "rgba(3,27,78,0.75)",
               },
               {
                 offset: 1,
-                color: "rgba(58,149,253,0.75)", // 50% 处的颜色
+                color: "rgba(58,149,253,0.75)",
               },
             ],
-            global: true, // 缺省为 false
+            global: true,
           },
-          borderColor: "#fff",
+          borderColor: "rgba(255,255,255,0.3)",
           borderWidth: 0.2,
         },
       },

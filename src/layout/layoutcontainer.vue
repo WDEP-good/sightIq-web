@@ -14,6 +14,8 @@ import HomeBg from "@/components/homeBg.vue";
 
 <style scoped lang="less">
 .el-aside {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   margin: 10px;
 }
 </style>

@@ -13,7 +13,7 @@ import LayoutContainer from "@/layout/layoutcontainer.vue";
 
 <style scoped lang="less">
 .el-container {
-  height:auto;
+  height:100vh;
   .el-header {
     margin: 10px;
   }
