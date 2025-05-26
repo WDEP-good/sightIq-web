@@ -1,10 +1,10 @@
 <template>
-  <el-col :span="24">
-    <el-row style="height: 800px;">
+  <el-col :span="24" class="map-container">
+    <el-row class="chart-row">
       <div id="chart"></div>
     </el-row>
-    <el-row>
-        <Footer/>
+    <el-row class="footer-row">
+      <Footer/>
     </el-row>
   </el-col>
 </template>
@@ -86,19 +86,7 @@ function scatterData() {
 // 处理地图
 
 var Mapoption = {
-  backgroundColor: "#003366",
-  // 地图标题
-  title: {
-    show: true,
-    text: "各省市景区数量图",
-    x: "center",
-    top: "80vh",
-    textStyle: {
-      color: "#fff",
-      fontFamily: "等线",
-      fontSize: 22,
-    },
-  },
+  backgroundColor: "transparent",
   tooltip: {
     trigger: "none",
     formatter: function (params: any) {
@@ -135,8 +123,8 @@ var Mapoption = {
   // 国家地图边缘
   geo: [
     {
-      layoutCenter: ["50%", "40%"], //位置
-      layoutSize: "150%", //大小
+      layoutCenter: ["50%", "50%"], //位置
+      layoutSize: "200%", //大小
       show: true,
       map: mapName,
       roam: false,
@@ -194,7 +182,7 @@ var Mapoption = {
       zlevel: -1,
       aspectScale: 1,
       zoom: 0.65,
-      layoutCenter: ["50%", "41%"],
+      layoutCenter: ["50%", "50%"],
       layoutSize: "150%",
       roam: false,
       silent: true,
@@ -216,8 +204,8 @@ var Mapoption = {
       zlevel: -2,
       aspectScale: 1,
       zoom: 0.65,
-      layoutCenter: ["50%", "42%"],
-      layoutSize: "150%",
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "200%",
       roam: false,
       silent: true,
       itemStyle: {
@@ -238,8 +226,8 @@ var Mapoption = {
       zlevel: -3,
       aspectScale: 1,
       zoom: 0.65,
-      layoutCenter: ["50%", "43%"],
-      layoutSize: "150%",
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "200%",
       roam: false,
       silent: true,
       itemStyle: {
@@ -260,8 +248,8 @@ var Mapoption = {
       zlevel: -4,
       aspectScale: 1,
       zoom: 0.65,
-      layoutCenter: ["50%", "44%"],
-      layoutSize: "150%",
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "200%",
       roam: false,
       silent: true,
       itemStyle: {
@@ -323,7 +311,7 @@ var Mapoption = {
         },
       },
       layoutCenter: ["50%", "50%"],
-      layoutSize: "180%",
+      layoutSize: "250%",
       animation: false,
       markPoint: {
         symbol: "none",
@@ -432,9 +420,30 @@ var Mapoption = {
 </script>
 
 <style scoped>
+.map-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-row {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  height: 85vh; /* 限制地图高度 */
+}
+
+.footer-row {
+  flex-shrink: 0;
+  height: 15vh; /* 给 footer 固定高度 */
+}
+
 #chart {
   width: 100%;
   height: 100%;
-  min-height: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
