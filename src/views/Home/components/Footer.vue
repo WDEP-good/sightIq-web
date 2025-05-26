@@ -27,4 +27,11 @@ onMounted (() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.footer{
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+}
+
+</style>

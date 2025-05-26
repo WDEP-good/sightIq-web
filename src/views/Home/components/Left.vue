@@ -407,4 +407,12 @@ let option = {
 
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.left {
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+}
+
+
+</style>
