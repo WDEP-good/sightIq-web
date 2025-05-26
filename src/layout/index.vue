@@ -1,5 +1,7 @@
 <template>
-  <component :is="layout" />
+  <div class="layout-container">
+    <component :is="layout" />
+  </div>
 </template>
 
 <script setup>
@@ -13,4 +15,11 @@ const layout = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.layout-container{
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #003366, #001a33);
+}
+
+</style>

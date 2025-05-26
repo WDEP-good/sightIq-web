@@ -1,5 +1,5 @@
 <template>
-    <CityBg :city="data.name"/>
+    <CityBg :city="data.name as string"/>
     <div class="city">
     </div>
 </template>

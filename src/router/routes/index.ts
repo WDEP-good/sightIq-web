@@ -3,12 +3,20 @@ let routes = [
     path: "/",
     name: "Root",
     redirect: "/home",
-    component: () => import("@/layout/index.vue"),
+  },
+  {
+    path: "/home",
+    name: "home",
+    components: {
+      default: () => import("@/layout/index.vue"),
+      right: () => import("@/views/Home/components/Right.vue"),
+      left: () => import("@/views/Home/components/Left.vue"),
+    },
     children: [
       {
-        path: "home",
-        name: "home",
-        component: () => import("@/views/Home/home.vue"),
+        path: "/home/map",
+        name: "map",
+        component: () => import("@/components/homeBg.vue"),
       },
     ],
   },
@@ -18,9 +26,9 @@ let routes = [
     component: () => import("@/views/Login.vue"),
   },
   {
-    path: "/nologin",
-    name: "nologin",
-    component: () => import("@/views/no_login.vue"),
+    path: "/register",
+    name: "register",
+    component: () => import("@/views/register.vue"),
   },
   {
     path: "/city",
