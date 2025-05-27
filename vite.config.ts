@@ -50,6 +50,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
       },
+      port: 3001,
     },
   }
 }
