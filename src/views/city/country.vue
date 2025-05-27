@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, watch } from "vue";
-import Footer from "@/views/City/Footer.vue";
+import Footer from "@/views/city/footer.vue";
 import * as echarts from "echarts";
 import china from "@/assets/china.json";
 import { GeoCoordMap } from "@/data/homeBgdata.ts";
@@ -63,8 +63,12 @@ onMounted(() => {
   );
   myChart.on("click", function (params: any) {
     console.log(params.data);
-
-    router.push({ name: "city", query: params.data });
+    router.push({
+      name: "city",
+      params: {
+        cityId: params.data.id,
+      },
+    });
   });
 });
 

@@ -14,6 +14,12 @@ let routes = [
         name: "map",
         component: () => import("@/views/city/country.vue"),
       },
+      {
+        path: "city/:cityId",
+        name: "city",
+        component: () => import("@/views/city/city.vue"),
+        props: true,
+      },
     ],
   },
   {

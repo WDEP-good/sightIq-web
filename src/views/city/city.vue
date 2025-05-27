@@ -1,26 +1,34 @@
 <template>
-    <CityBg :city="data.name as string"/>
-    <div class="city">
-    </div>
+  <div class="city">
+    <component :is="cityMap" />
+  </div>
 </template>
 <script setup lang="ts">
-import {useRoute} from 'vue-router'
-import CityBg from './compents/cityBg.vue'
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import GuangXi from "@/views/city/compents/guangxi.vue";
+import HeiLongJiang from "@/views/city/compents/heilongjiang.vue";
 const route = useRoute();
-const data = route.query
-console.log(data);
+const { cityId } = route.params;
+console.log(cityId);
 
-
+const cityMap = computed(() => {
+  switch (cityId) {
+    case "guangxi":
+      return GuangXi;
+    case "heilongjiang":
+      return HeiLongJiang;
+  }
+});
 </script>
 
 <style scoped>
-.cityBg{
-    z-index:0;
+.cityBg {
+  z-index: 0;
 }
-.city{
-    z-index:1;
-    color: #fff;
-    Background:red;
+.city {
+  z-index: 1;
+  color: #fff;
+  background: red;
 }
-
 </style>
