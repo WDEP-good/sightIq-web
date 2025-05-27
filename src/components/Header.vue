@@ -2,7 +2,14 @@
   <div class="header-container">
     <el-row justify="space-around" align="middle">
       <el-col :span="4.5" class="text-center" @click="goto('lvyu')">
-        <div class="demo">SightIQ</div>
+        <div class="demo">
+          <img
+            src="/logo.svg"
+            alt=""
+            width="30"
+            height="30"
+          />SightIQ
+        </div>
       </el-col>
       <el-col :span="4.5" @click="goto('analysis')" class="text-center">
         <span class="nav-text">数据分析</span>
@@ -31,7 +38,6 @@ let dayt = reactive({
   timexinqi: "",
 });
 const goto = (gowhere: string) => {
-  console.log(1);
   if (gowhere == "lvyu") router.push("/home");
   if (gowhere == "analysis") router.push("/analysis");
   if (gowhere == "forecast") router.push("/forecast");
@@ -81,16 +87,10 @@ setInterval(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   justify-content: center;
+  gap: 10px;
 
   &:hover {
     transform: scale(1.02);
-  }
-
-  .homeBg-img {
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    background: url("@/assets/icons/svg/DT.svg") no-repeat center;
   }
 
   .demotext {
@@ -102,6 +102,12 @@ setInterval(() => {
     display: flex;
     align-items: center;
   }
+}
+
+.homeBg-img {
+  display: flex;
+  align-items: center;
+  object-fit: contain;
 }
 
 .demo2 {
@@ -142,6 +148,7 @@ setInterval(() => {
 }
 
 .text-center {
+  display: flex;
   text-align: center;
   color: #fff;
 }
@@ -150,7 +157,7 @@ setInterval(() => {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: scale(1.02);
   }
