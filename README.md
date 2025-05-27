@@ -12,3 +12,8 @@ pnpm i
 
 pnpm dev
 ```
+
+# 构建镜像
+```
+docker build -f Dockerfile.web -t sightiq-web .
+```
