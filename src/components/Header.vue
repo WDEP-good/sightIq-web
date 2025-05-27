@@ -1,22 +1,19 @@
 <template>
   <div class="header-container">
     <el-row justify="space-around" align="middle">
-      <el-col :span="4" class="text-center">
+      <el-col :span="4.5" class="text-center" @click="goto('lvyu')">
         <div class="demo">SightIQ</div>
       </el-col>
-      <el-col :span="4" @click="goto('lvyu')" class="text-center">
-        <span class="nav-text">全国旅游数据</span>
-      </el-col>
-      <el-col :span="4" @click="goto('analysis')" class="text-center">
+      <el-col :span="4.5" @click="goto('analysis')" class="text-center">
         <span class="nav-text">数据分析</span>
       </el-col>
-      <el-col :span="4" @click="goto('forecast')" class="text-center">
+      <el-col :span="4.5" @click="goto('forecast')" class="text-center">
         <span class="nav-text">预测预警</span>
       </el-col>
-      <el-col :span="4" @click="goto('report')" class="text-center">
+      <el-col :span="4.5" @click="goto('report')" class="text-center">
         <span class="nav-text">统计报表</span>
       </el-col>
-      <el-col :span="4" class="text-center">
+      <el-col :span="4.5" class="text-center">
         {{ dayt.timeMonth }} {{ dayt.timemiao }}
       </el-col>
     </el-row>

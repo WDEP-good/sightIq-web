@@ -7,28 +7,24 @@ let routes = [
   {
     path: "/home",
     name: "home",
-    components: {
-      default: () => import("@/layout/index.vue"),
-      right: () => import("@/views/Home/components/Right.vue"),
-      left: () => import("@/views/Home/components/Left.vue"),
-    },
+    component: () => import("@/layout/index.vue"),
     children: [
       {
-        path: "/home/map",
+        path: "",
         name: "map",
-        component: () => import("@/components/homeBg.vue"),
+        component: () => import("@/views/City/country.vue"),
       },
     ],
   },
   {
     path: "/Login",
     name: "Login",
-    component: () => import("@/views/Login.vue"),
+    component: () => import("@/views/user/Login.vue"),
   },
   {
     path: "/register",
     name: "register",
-    component: () => import("@/views/register.vue"),
+    component: () => import("@/views/user/register.vue"),
   },
   {
     path: "/city",

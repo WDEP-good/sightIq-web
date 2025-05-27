@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, reactive, watch } from "vue";
-import Footer from "@/views/Home/components/Footer.vue";
+import Footer from "@/views/City/Footer.vue";
 import * as echarts from "echarts";
 import china from "@/assets/china.json";
 import { GeoCoordMap } from "@/data/homeBgdata.ts";
