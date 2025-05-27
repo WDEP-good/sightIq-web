@@ -12,7 +12,7 @@ let routes = [
       {
         path: "",
         name: "map",
-        component: () => import("@/views/City/country.vue"),
+        component: () => import("@/views/city/country.vue"),
       },
     ],
   },
@@ -25,11 +25,6 @@ let routes = [
     path: "/register",
     name: "register",
     component: () => import("@/views/user/register.vue"),
-  },
-  {
-    path: "/city",
-    name: "city",
-    component: () => import("@/views/City/city.vue"),
   },
 ];
 
