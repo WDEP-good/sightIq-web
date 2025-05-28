@@ -1,11 +1,18 @@
 <h1 align="center" style="font-size: 3em;">SightIQ Web</h1>
 
 # 项目描述
+
 SightIQ Web 是一个基于 Vue 3 + TypeScript + Vite 的旅游景点推荐系统。
 
 # 项目预览
 
-<img src="./public/demo.png" alt="demo" />
+## 全国数据展示
+
+<img src="./public/demo1.png" alt="demo" />
+
+## 省级数据展示
+
+<img src="./public/demo2.png" alt="demo" />
 
 # 如何使用
 
