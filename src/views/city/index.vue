@@ -4,8 +4,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import GuangXi from "@/views/city/compents/guangxi.vue";
-import HeiLongJiang from "@/views/city/compents/heilongjiang.vue";
+import GuangXi from "@/views/City/compents/guangxi.vue";
+import HeiLongJiang from "@/views/City/compents/heilongjiang.vue";
+import BeiJing from "@/views/City/compents/beijing.vue";
 const route = useRoute();
 const { cityId } = route.params;
 console.log(cityId);
@@ -16,6 +17,8 @@ const cityMap = computed(() => {
       return GuangXi;
     case "heilongjiang":
       return HeiLongJiang;
+    case "beijing":
+      return BeiJing;
   }
 });
 </script>
