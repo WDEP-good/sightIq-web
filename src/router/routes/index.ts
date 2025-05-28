@@ -7,18 +7,25 @@ let routes = [
   {
     path: "/home",
     name: "home",
-    component: () => import("@/layout/index.vue"),
+    component: () => import("@/layouts/index.vue"),
     children: [
       {
         path: "",
-        name: "map",
-        component: () => import("@/views/city/country.vue"),
+        name: "countryMap",
+        component: () => import("@/views/country/index.vue"),
       },
+    ],
+  },
+  {
+    path: "/city/:cityId",
+    name: "city",
+    component: () => import("@/layouts/index.vue"),
+    props: true,
+    children: [
       {
-        path: "city/:cityId",
-        name: "city",
-        component: () => import("@/views/city/city.vue"),
-        props: true,
+        path: "",
+        name: "cityMap",
+        component: () => import("@/views/city/index.vue"),
       },
     ],
   },

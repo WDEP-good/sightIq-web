@@ -1,18 +1,15 @@
 <template>
   <el-container>
-    <el-header><Header /></el-header>
-    <el-container>
-      <el-aside><Left /></el-aside>
-      <el-main><RouterView /></el-main>
-      <el-aside><Right /></el-aside>
-    </el-container>
+    <el-aside><Left /></el-aside>
+    <el-main><RouterView /></el-main>
+    <el-aside><Right /></el-aside>
   </el-container>
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import Left from "@/layout/components/Left.vue";
-import Right from "@/layout/components/Right.vue";
+
+import Left from "@/views/country/components/Left.vue";
+import Right from "@/views/country/components/Right.vue";
 </script>
 
 <style scoped lang="less">

@@ -1,7 +1,5 @@
 <template>
-  <div class="city">
-    <component :is="cityMap" />
-  </div>
+  <component :is="cityMap" />
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
@@ -22,13 +20,4 @@ const cityMap = computed(() => {
 });
 </script>
 
-<style scoped>
-.cityBg {
-  z-index: 0;
-}
-.city {
-  z-index: 1;
-  color: #fff;
-  background: red;
-}
-</style>
+<style scoped></style>

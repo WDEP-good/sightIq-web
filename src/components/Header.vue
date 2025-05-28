@@ -12,7 +12,7 @@
         </div>
       </el-col>
       <el-col :span="4.5" @click="goto('analysis')" class="text-center">
-        <span class="nav-text">数据分析</span>
+        <span class="nav-text">路线规划</span>
       </el-col>
       <el-col :span="4.5" @click="goto('forecast')" class="text-center">
         <span class="nav-text">预测预警</span>
