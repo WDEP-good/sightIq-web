@@ -62,7 +62,6 @@ onMounted(() => {
     }
   );
   myChart.on("click", function (params: any) {
-    console.log(params.data);
     router.push({
       name: "city",
       params: {

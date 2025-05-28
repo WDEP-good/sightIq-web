@@ -1,14 +1,20 @@
 <template>
-  <div class="guangxi">
-    <div id="chart_guangxi"></div>
-  </div>
+  <el-col :span="24" class="map-container">
+    <el-row class="chart-row">
+      <div id="chart_guangxi"></div>
+    </el-row>
+  </el-col>
 </template>
+
 <script setup lang="ts">
 import * as echarts from "echarts";
-var index = 0; //播放所在下标
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
 import guangxijson from "@/assets/450000.json";
+var index = 0; //播放所在下标
+
+let myChart: echarts.ECharts | null = null;
+
 var mapGuangxiData = [
   {
     name: "全省",
@@ -101,21 +107,34 @@ var mapGuangxiData = [
     coordinate: [107.353926, 22.404108],
   },
 ];
+
+// 在组件初始化时就注册地图数据
 echarts.registerMap("广西", guangxijson as any);
+
 onMounted(() => {
-  let MapGuangxi = echarts.init(document.getElementById("chart_guangxi"));
-  MapGuangxi.setOption(option, true);
-  MapGuangxi.on("mouseover", function (params) {
+  myChart = echarts.init(document.getElementById("chart_guangxi"));
+  myChart.showLoading();
+
+  setTimeout(() => {
+    if (myChart) {
+      myChart.hideLoading();
+      myChart.setOption(option, true);
+      
+      window.addEventListener("resize", handleResize);
+    }
+  }, 1000);
+
+  myChart.on("mouseover", function (params) {
     console.log(params);
     clearInterval(showTip);
-    MapGuangxi.dispatchAction({
+    myChart?.dispatchAction({
       type: "showTip",
       seriesIndex: 0,
       dataIndex: params.dataIndex,
     });
   });
   var showTip = setInterval(function () {
-    MapGuangxi.dispatchAction({
+    myChart?.dispatchAction({
       type: "showTip",
       seriesIndex: 0,
       dataIndex: index,
@@ -125,10 +144,10 @@ onMounted(() => {
       index = 0;
     }
   }, 2000);
-  MapGuangxi.on("mouseout", function (_params: any) {
+  myChart.on("mouseout", function (_params: any) {
     showTip && clearInterval(showTip);
     showTip = setInterval(function () {
-      MapGuangxi.dispatchAction({
+      myChart?.dispatchAction({
         type: "showTip",
         seriesIndex: 0,
         dataIndex: index,
@@ -141,8 +160,21 @@ onMounted(() => {
   });
 });
 
+const handleResize = () => {
+  if (myChart) {
+    myChart.resize();
+  }
+};
+
+onUnmounted(() => {
+  if (myChart) {
+    myChart.dispose();
+    myChart = null;
+  }
+  window.removeEventListener("resize", handleResize);
+});
+
 let option = {
-  backgroundColor: "#003366",
   tooltip: {
     trigger: "item",
     position: function (
@@ -201,10 +233,10 @@ let option = {
   geo: [
     {
       map: "广西",
-      aspectScale: 1,
-      zoom: 0.65,
+      aspectScale: 0.75,
+      zoom: 1.0,
       layoutCenter: ["50%", "50%"],
-      layoutSize: "180%",
+      layoutSize: "95%",
       show: true,
       roam: false,
       label: {
@@ -222,104 +254,17 @@ let option = {
           areaColor: "transparent",
         },
       },
-    },
-    // 重影
-    {
-      type: "map",
-      map: "广西",
-      zlevel: -1,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "51%"],
-      layoutSize: "180%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor:"rgba(17, 149, 216,0.6)",
-          borderColor: "rgba(58,149,253,0.8)",
-          shadowColor: "rgba(172, 122, 255,0.5)",
-          shadowOffsetY: 5,
-          shadowBlur: 15,
-          areaColor: "rgba(5,21,35,0.1)",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: "广西",
-      zlevel: -2,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "52%"],
-      layoutSize: "180%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor: "rgba(57, 132, 188,0.4)",
-          borderColor: "rgba(58,149,253,0.6)",
-          shadowColor: "rgba(65, 214, 255,1)",
-          shadowOffsetY: 5,
-          shadowBlur: 15,
-          areaColor: "transpercent",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: "广西",
-      zlevel: -3,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "53%"],
-      layoutSize: "180%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 1,
-          // borderColor: "rgba(11, 43, 97,0.8)",
-          borderColor: "rgba(58,149,253,0.4)",
-          shadowColor: "rgba(58,149,253,1)",
-          shadowOffsetY: 15,
-          shadowBlur: 10,
-          areaColor: "transpercent",
-        },
-      },
-    },
-    {
-      type: "map",
-      map: "广西",
-      zlevel: -4,
-      aspectScale: 1,
-      zoom: 0.65,
-      layoutCenter: ["50%", "54%"],
-      layoutSize: "180%",
-      roam: false,
-      silent: true,
-      itemStyle: {
-        normal: {
-          borderWidth: 5,
-          // borderColor: "rgba(11, 43, 97,0.8)",
-          borderColor: "rgba(5,9,57,0.8)",
-          shadowColor: "rgba(29, 111, 165,0.8)",
-          shadowOffsetY: 15,
-          shadowBlur: 10,
-          areaColor: "rgba(5,21,35,0.1)",
-        },
-      },
-    },
+    }
   ],
   series: [
     {
       name: "广西市数据",
       type: "map",
-      map: "广西", // 自定义扩展图表类型
-      aspectScale: 1,
-      zoom: 0.65, // 缩放
+      map: "广西",
+      aspectScale: 0.75,
+      zoom: 1.0,
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "95%",
       showLegendSymbol: true,
       label: {
         normal: {
@@ -362,23 +307,35 @@ let option = {
           areaColor: "rgba(0,254,233,0.6)",
         },
       },
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "180%",
       markPoint: {
         symbol: "none",
       },
       data: mapGuangxiData,
-    },
-  ],
+    }
+  ]
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.map-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-row {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  height: 100vh;
+}
+
 #chart_guangxi {
+  width: 100%;
+  height: 100%;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
-  bottom: 0;
+  left: 0;
 }
 </style>
