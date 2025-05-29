@@ -1,7 +1,7 @@
 <template>
   <el-col :span="24" class="map-container">
     <el-row class="chart-row">
-      <div id="chart_guangxi"></div>
+      <div id="chartJiLin"></div>
     </el-row>
   </el-col>
 </template>
@@ -10,120 +10,28 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import guangxijson from "@/assets/guangxi.json";
-var index = 0; //播放所在下标
+import jilinjson from "@/assets/jilin.json";
 
 let myChart: echarts.ECharts | null = null;
-
-var mapGuangxiData = [
-  {
-    name: "全省",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.320004, 22.82402],
-  },
-  {
-    name: "南宁市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.320004, 22.82402],
-  },
-  {
-    name: "柳州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.411703, 24.314617],
-  },
-  {
-    name: "桂林市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [110.299121, 25.274215],
-  },
-  {
-    name: "梧州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [111.297604, 23.474803],
-  },
-  {
-    name: "北海市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.119254, 21.473343],
-  },
-  {
-    name: "防城港市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.345478, 21.614631],
-  },
-  {
-    name: "钦州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.624175, 21.967127],
-  },
-  {
-    name: "贵港市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.602146, 23.0936],
-  },
-  {
-    name: "玉林市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [110.154393, 22.63136],
-  },
-  {
-    name: "百色市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [106.616285, 23.897742],
-  },
-  {
-    name: "贺州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [111.552056, 24.414141],
-  },
-  {
-    name: "河池市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.062105, 24.695899],
-  },
-  {
-    name: "来宾市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.229772, 23.733766],
-  },
-  {
-    name: "崇左市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [107.353926, 22.404108],
-  },
-];
+var index = 0; //播放所在下标
 
 // 在组件初始化时就注册地图数据
-echarts.registerMap("广西", guangxijson as any);
+echarts.registerMap("吉林", jilinjson as any);
 
 onMounted(() => {
-  myChart = echarts.init(document.getElementById("chart_guangxi"));
+  myChart = echarts.init(document.getElementById("chartJiLin"));
   myChart.showLoading();
 
   setTimeout(() => {
     if (myChart) {
       myChart.hideLoading();
       myChart.setOption(option, true);
-      
+
       window.addEventListener("resize", handleResize);
     }
   }, 1000);
 
+  // 鼠标交互事件
   myChart.on("mouseover", function (params) {
     console.log(params);
     clearInterval(showTip);
@@ -133,6 +41,7 @@ onMounted(() => {
       dataIndex: params.dataIndex,
     });
   });
+
   var showTip = setInterval(function () {
     myChart?.dispatchAction({
       type: "showTip",
@@ -140,11 +49,12 @@ onMounted(() => {
       dataIndex: index,
     });
     index++;
-    if (index >= 14) {
+    if (index >= 9) {
       index = 0;
     }
   }, 2000);
-  myChart.on("mouseout", function (_params: any) {
+
+  myChart.on("mouseout", function (_params) {
     showTip && clearInterval(showTip);
     showTip = setInterval(function () {
       myChart?.dispatchAction({
@@ -153,7 +63,7 @@ onMounted(() => {
         dataIndex: index,
       });
       index++;
-      if (index >= 14) {
+      if (index >= 9) {
         index = 0;
       }
     }, 2000);
@@ -174,7 +84,71 @@ onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
 });
 
+var mapJiLinData = [
+  {
+    name: "全省",
+    tradeBidsectionCount: 100,
+    tradeProjectCount: 200,
+    coordinate: [125.3245, 43.886841],
+  },
+  {
+    name: "长春市",
+    tradeBidsectionCount: 90,
+    tradeProjectCount: 180,
+    coordinate: [125.3245, 43.886841],
+  },
+  {
+    name: "吉林市",
+    tradeBidsectionCount: 80,
+    tradeProjectCount: 160,
+    coordinate: [126.55302, 43.843577],
+  },
+  {
+    name: "四平市",
+    tradeBidsectionCount: 70,
+    tradeProjectCount: 140,
+    coordinate: [124.370785, 43.170344],
+  },
+  {
+    name: "辽源市",
+    tradeBidsectionCount: 60,
+    tradeProjectCount: 120,
+    coordinate: [125.145349, 42.902692],
+  },
+  {
+    name: "通化市",
+    tradeBidsectionCount: 65,
+    tradeProjectCount: 130,
+    coordinate: [125.936501, 41.721177],
+  },
+  {
+    name: "白山市",
+    tradeBidsectionCount: 55,
+    tradeProjectCount: 110,
+    coordinate: [126.427839, 41.942505],
+  },
+  {
+    name: "松原市",
+    tradeBidsectionCount: 75,
+    tradeProjectCount: 150,
+    coordinate: [124.823608, 45.118243],
+  },
+  {
+    name: "白城市",
+    tradeBidsectionCount: 50,
+    tradeProjectCount: 100,
+    coordinate: [122.841114, 45.619026],
+  },
+  {
+    name: "延边朝鲜族自治州",
+    tradeBidsectionCount: 85,
+    tradeProjectCount: 170,
+    coordinate: [129.513228, 42.904823],
+  },
+];
+
 let option = {
+  backgroundColor: "transparent",
   tooltip: {
     trigger: "item",
     position: function (
@@ -184,28 +158,22 @@ let option = {
       _rect: any,
       size: any
     ) {
-      var x = 0; // x坐标位置
-      var y = 0; // y坐标位置
-      // 当前鼠标位置
+      var x = 0;
+      var y = 0;
       var pointX = point[0];
       var pointY = point[1];
-      // 提示框大小
       var boxWidth = size.contentSize[0];
       var boxHeight = size.contentSize[1];
 
-      // boxWidth > pointX 说明鼠标左边放不下提示框
       if (boxWidth > pointX) {
         x = pointX + 10;
       } else {
-        // 左边放的下
         x = pointX - boxWidth - 10;
       }
 
-      // boxHeight > pointY 说明鼠标上边放不下提示框
       if (boxHeight > pointY) {
         y = 5;
       } else {
-        // 上边放得下
         y = pointY - boxHeight;
       }
       return [x, y];
@@ -218,23 +186,21 @@ let option = {
     },
     backgroundColor: "rgba(0,2,89,0.8)",
     formatter: function (params: any) {
-      // console.log(params)
-      var tipHtml = "";
-      tipHtml = `
-                    <div class="ui-map-img">
-                        <div class='ui-maptxt'>${params.name}</div>
-                        <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
-                        <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
-                    </div>
-                `;
+      var tipHtml = `
+        <div class="ui-map-img">
+            <div class='ui-maptxt'>${params.name}</div>
+            <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
+            <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
+        </div>
+      `;
       return tipHtml;
     },
   },
   geo: [
     {
-      map: "广西",
+      map: "吉林",
       aspectScale: 0.75,
-      zoom: 1.0,
+      zoom: 1.1,
       layoutCenter: ["50%", "50%"],
       layoutSize: "95%",
       show: true,
@@ -248,23 +214,21 @@ let option = {
         normal: {
           borderColor: "#c0f3fb",
           borderWidth: 1,
-          shadowColor: "#8cd3ef",
-          shadowOffsetY: 10,
-          shadowBlur: 120,
+          shadowColor: "rgba(58,149,253,0.8)",
+          shadowOffsetY: 5,
+          shadowBlur: 15,
           areaColor: "transparent",
         },
       },
-    }
+    },
   ],
   series: [
     {
-      name: "广西市数据",
+      name: "吉林省数据",
       type: "map",
-      map: "广西",
+      map: "吉林",
       aspectScale: 0.75,
-      zoom: 1.0,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "95%",
+      zoom: 1.1,
       showLegendSymbol: true,
       label: {
         normal: {
@@ -275,7 +239,7 @@ let option = {
           },
         },
         emphasis: {
-          // show: false,
+          show: false,
         },
       },
       itemStyle: {
@@ -289,14 +253,14 @@ let option = {
             colorStops: [
               {
                 offset: 0,
-                color: "rgba(3,27,78,0.75)", // 0% 处的颜色
+                color: "rgba(3,27,78,0.75)",
               },
               {
                 offset: 1,
-                color: "rgba(58,149,253,0.75)", // 50% 处的颜色
+                color: "rgba(58,149,253,0.75)",
               },
             ],
-            global: true, // 缺省为 false
+            global: true,
           },
           borderColor: "#fff",
           borderWidth: 0.2,
@@ -307,12 +271,14 @@ let option = {
           areaColor: "rgba(0,254,233,0.6)",
         },
       },
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "95%",
       markPoint: {
         symbol: "none",
       },
-      data: mapGuangxiData,
-    }
-  ]
+      data: mapJiLinData,
+    },
+  ],
 };
 </script>
 
@@ -331,7 +297,7 @@ let option = {
   height: 100vh;
 }
 
-#chart_guangxi {
+#chartJiLin {
   width: 100%;
   height: 100%;
   position: absolute;

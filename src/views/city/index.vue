@@ -1,24 +1,31 @@
 <template>
-  <component :is="cityMap" />
+  <Suspense>
+    <template #default>
+      <component :is="cityComponent" />
+    </template>
+    <template #fallback>
+      <div>加载中...</div>
+    </template>
+  </Suspense>
 </template>
+
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import GuangXi from "@/views/city/compents/guangxi.vue";
-import HeiLongJiang from "@/views/city/compents/heilongjiang.vue";
-import BeiJing from "@/views/city/compents/beijing.vue";
+// import GuangXi from "@/views/city/compents/guangxi.vue";
+// import HeiLongJiang from "@/views/city/compents/heilongjiang.vue";
+// import BeiJing from "@/views/city/compents/beijing.vue";
+// import Jilin from "@/views/city/compents/jilin.vue";
 const route = useRoute();
 const { cityId } = route.params;
-console.log(cityId);
+const cityComponent = ref(null);
 
-const cityMap = computed(() => {
-  switch (cityId) {
-    case "guangxi":
-      return GuangXi;
-    case "heilongjiang":
-      return HeiLongJiang;
-    case "beijing":
-      return BeiJing;
+onMounted(async () => {
+  try {
+    const component = await import(`@/views/city/compents/${cityId}.vue`);
+    cityComponent.value = component.default;
+  } catch (error) {
+    console.error(`无法加载城市组件: ${error}`);
   }
 });
 </script>

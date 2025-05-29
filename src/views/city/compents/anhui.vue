@@ -1,7 +1,7 @@
 <template>
   <el-col :span="24" class="map-container">
     <el-row class="chart-row">
-      <div id="chart_guangxi"></div>
+      <div id="chartAnHui"></div>
     </el-row>
   </el-col>
 </template>
@@ -10,120 +10,27 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import guangxijson from "@/assets/guangxi.json";
-var index = 0; //播放所在下标
+import anhuijson from "@/assets/anhui.json";
 
 let myChart: echarts.ECharts | null = null;
+var index = 0; //播放所在下标
 
-var mapGuangxiData = [
-  {
-    name: "全省",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.320004, 22.82402],
-  },
-  {
-    name: "南宁市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.320004, 22.82402],
-  },
-  {
-    name: "柳州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.411703, 24.314617],
-  },
-  {
-    name: "桂林市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [110.299121, 25.274215],
-  },
-  {
-    name: "梧州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [111.297604, 23.474803],
-  },
-  {
-    name: "北海市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.119254, 21.473343],
-  },
-  {
-    name: "防城港市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.345478, 21.614631],
-  },
-  {
-    name: "钦州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.624175, 21.967127],
-  },
-  {
-    name: "贵港市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.602146, 23.0936],
-  },
-  {
-    name: "玉林市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [110.154393, 22.63136],
-  },
-  {
-    name: "百色市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [106.616285, 23.897742],
-  },
-  {
-    name: "贺州市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [111.552056, 24.414141],
-  },
-  {
-    name: "河池市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [108.062105, 24.695899],
-  },
-  {
-    name: "来宾市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [109.229772, 23.733766],
-  },
-  {
-    name: "崇左市",
-    tradeBidsectionCount: 100,
-    tradeProjectCount: 200,
-    coordinate: [107.353926, 22.404108],
-  },
-];
-
-// 在组件初始化时就注册地图数据
-echarts.registerMap("广西", guangxijson as any);
+echarts.registerMap("安徽", anhuijson as any);
 
 onMounted(() => {
-  myChart = echarts.init(document.getElementById("chart_guangxi"));
+  myChart = echarts.init(document.getElementById("chartAnHui"));
   myChart.showLoading();
 
   setTimeout(() => {
     if (myChart) {
       myChart.hideLoading();
       myChart.setOption(option, true);
-      
+
       window.addEventListener("resize", handleResize);
     }
   }, 1000);
 
+  // 鼠标交互事件
   myChart.on("mouseover", function (params) {
     console.log(params);
     clearInterval(showTip);
@@ -133,6 +40,7 @@ onMounted(() => {
       dataIndex: params.dataIndex,
     });
   });
+
   var showTip = setInterval(function () {
     myChart?.dispatchAction({
       type: "showTip",
@@ -140,11 +48,12 @@ onMounted(() => {
       dataIndex: index,
     });
     index++;
-    if (index >= 14) {
+    if (index >= 16) {
       index = 0;
     }
   }, 2000);
-  myChart.on("mouseout", function (_params: any) {
+
+  myChart.on("mouseout", function (_params) {
     showTip && clearInterval(showTip);
     showTip = setInterval(function () {
       myChart?.dispatchAction({
@@ -153,7 +62,7 @@ onMounted(() => {
         dataIndex: index,
       });
       index++;
-      if (index >= 14) {
+      if (index >= 16) {
         index = 0;
       }
     }, 2000);
@@ -174,7 +83,107 @@ onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
 });
 
+var mapAnHuiData = [
+  {
+    name: "合肥市",
+    tradeBidsectionCount: 100,
+    tradeProjectCount: 200,
+    coordinate: [117.283042, 31.86119],
+  },
+  {
+    name: "芜湖市",
+    tradeBidsectionCount: 95,
+    tradeProjectCount: 190,
+    coordinate: [118.376451, 31.326319],
+  },
+  {
+    name: "蚌埠市",
+    tradeBidsectionCount: 90,
+    tradeProjectCount: 180,
+    coordinate: [117.363228, 32.939667],
+  },
+  {
+    name: "淮南市",
+    tradeBidsectionCount: 85,
+    tradeProjectCount: 170,
+    coordinate: [117.018329, 32.647574],
+  },
+  {
+    name: "马鞍山市",
+    tradeBidsectionCount: 80,
+    tradeProjectCount: 160,
+    coordinate: [118.507906, 31.689362],
+  },
+  {
+    name: "淮北市",
+    tradeBidsectionCount: 75,
+    tradeProjectCount: 150,
+    coordinate: [116.794664, 33.971707],
+  },
+  {
+    name: "铜陵市",
+    tradeBidsectionCount: 70,
+    tradeProjectCount: 140,
+    coordinate: [117.816576, 30.929935],
+  },
+  {
+    name: "安庆市",
+    tradeBidsectionCount: 65,
+    tradeProjectCount: 130,
+    coordinate: [117.043551, 30.50883],
+  },
+  {
+    name: "黄山市",
+    tradeBidsectionCount: 60,
+    tradeProjectCount: 120,
+    coordinate: [118.317325, 29.709239],
+  },
+  {
+    name: "滁州市",
+    tradeBidsectionCount: 55,
+    tradeProjectCount: 110,
+    coordinate: [118.316264, 32.303627],
+  },
+  {
+    name: "阜阳市",
+    tradeBidsectionCount: 50,
+    tradeProjectCount: 100,
+    coordinate: [115.819729, 32.896969],
+  },
+  {
+    name: "宿州市",
+    tradeBidsectionCount: 45,
+    tradeProjectCount: 90,
+    coordinate: [116.984084, 33.633891],
+  },
+  {
+    name: "六安市",
+    tradeBidsectionCount: 40,
+    tradeProjectCount: 80,
+    coordinate: [116.507676, 31.752889],
+  },
+  {
+    name: "亳州市",
+    tradeBidsectionCount: 35,
+    tradeProjectCount: 70,
+    coordinate: [115.782939, 33.869338],
+  },
+  {
+    name: "池州市",
+    tradeBidsectionCount: 30,
+    tradeProjectCount: 60,
+    coordinate: [117.489157, 30.656037],
+  },
+  {
+    name: "宣城市",
+    tradeBidsectionCount: 25,
+    tradeProjectCount: 50,
+    coordinate: [118.757995, 30.945667],
+  },
+];
+
 let option = {
+  backgroundColor: "transparent",
   tooltip: {
     trigger: "item",
     position: function (
@@ -184,28 +193,22 @@ let option = {
       _rect: any,
       size: any
     ) {
-      var x = 0; // x坐标位置
-      var y = 0; // y坐标位置
-      // 当前鼠标位置
+      var x = 0;
+      var y = 0;
       var pointX = point[0];
       var pointY = point[1];
-      // 提示框大小
       var boxWidth = size.contentSize[0];
       var boxHeight = size.contentSize[1];
 
-      // boxWidth > pointX 说明鼠标左边放不下提示框
       if (boxWidth > pointX) {
         x = pointX + 10;
       } else {
-        // 左边放的下
         x = pointX - boxWidth - 10;
       }
 
-      // boxHeight > pointY 说明鼠标上边放不下提示框
       if (boxHeight > pointY) {
         y = 5;
       } else {
-        // 上边放得下
         y = pointY - boxHeight;
       }
       return [x, y];
@@ -218,23 +221,21 @@ let option = {
     },
     backgroundColor: "rgba(0,2,89,0.8)",
     formatter: function (params: any) {
-      // console.log(params)
-      var tipHtml = "";
-      tipHtml = `
-                    <div class="ui-map-img">
-                        <div class='ui-maptxt'>${params.name}</div>
-                        <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
-                        <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
-                    </div>
-                `;
+      var tipHtml = `
+        <div class="ui-map-img">
+            <div class='ui-maptxt'>${params.name}</div>
+            <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
+            <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
+        </div>
+      `;
       return tipHtml;
     },
   },
   geo: [
     {
-      map: "广西",
+      map: "安徽",
       aspectScale: 0.75,
-      zoom: 1.0,
+      zoom: 1.1,
       layoutCenter: ["50%", "50%"],
       layoutSize: "95%",
       show: true,
@@ -248,23 +249,21 @@ let option = {
         normal: {
           borderColor: "#c0f3fb",
           borderWidth: 1,
-          shadowColor: "#8cd3ef",
-          shadowOffsetY: 10,
-          shadowBlur: 120,
+          shadowColor: "rgba(58,149,253,0.8)",
+          shadowOffsetY: 5,
+          shadowBlur: 15,
           areaColor: "transparent",
         },
       },
-    }
+    },
   ],
   series: [
     {
-      name: "广西市数据",
+      name: "安徽数据",
       type: "map",
-      map: "广西",
+      map: "安徽",
       aspectScale: 0.75,
-      zoom: 1.0,
-      layoutCenter: ["50%", "50%"],
-      layoutSize: "95%",
+      zoom: 1.1,
       showLegendSymbol: true,
       label: {
         normal: {
@@ -275,7 +274,7 @@ let option = {
           },
         },
         emphasis: {
-          // show: false,
+          show: false,
         },
       },
       itemStyle: {
@@ -289,14 +288,14 @@ let option = {
             colorStops: [
               {
                 offset: 0,
-                color: "rgba(3,27,78,0.75)", // 0% 处的颜色
+                color: "rgba(3,27,78,0.75)",
               },
               {
                 offset: 1,
-                color: "rgba(58,149,253,0.75)", // 50% 处的颜色
+                color: "rgba(58,149,253,0.75)",
               },
             ],
-            global: true, // 缺省为 false
+            global: true,
           },
           borderColor: "#fff",
           borderWidth: 0.2,
@@ -307,12 +306,14 @@ let option = {
           areaColor: "rgba(0,254,233,0.6)",
         },
       },
+      layoutCenter: ["50%", "50%"],
+      layoutSize: "95%",
       markPoint: {
         symbol: "none",
       },
-      data: mapGuangxiData,
-    }
-  ]
+      data: mapAnHuiData,
+    },
+  ],
 };
 </script>
 
@@ -331,7 +332,7 @@ let option = {
   height: 100vh;
 }
 
-#chart_guangxi {
+#chartAnHui {
   width: 100%;
   height: 100%;
   position: absolute;

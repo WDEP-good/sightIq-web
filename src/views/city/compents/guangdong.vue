@@ -1,7 +1,7 @@
 <template>
   <el-col :span="24" class="map-container">
     <el-row class="chart-row">
-      <div id="chartBeijing"></div>
+      <div id="chartGuangDong"></div>
     </el-row>
   </el-col>
 </template>
@@ -10,16 +10,15 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import beijingjson from "@/assets/beijing.json";
+import guangdongjson from "@/assets/guangdong.json";
 
 let myChart: echarts.ECharts | null = null;
 var index = 0; //播放所在下标
 
-// 在组件初始化时就注册地图数据
-echarts.registerMap("北京", beijingjson as any);
+echarts.registerMap("广东", guangdongjson as any);
 
 onMounted(() => {
-  myChart = echarts.init(document.getElementById("chartBeijing"));
+  myChart = echarts.init(document.getElementById("chartGuangDong"));
   myChart.showLoading();
 
   setTimeout(() => {
@@ -49,7 +48,7 @@ onMounted(() => {
       dataIndex: index,
     });
     index++;
-    if (index >= 14) {
+    if (index >= 21) {
       index = 0;
     }
   }, 2000);
@@ -63,7 +62,7 @@ onMounted(() => {
         dataIndex: index,
       });
       index++;
-      if (index >= 14) {
+      if (index >= 21) {
         index = 0;
       }
     }, 2000);
@@ -84,109 +83,133 @@ onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
 });
 
-var mapBeijingData = [
+var mapGuangDongData = [
   {
-    name: "北京市",
+    name: "广州市",
     tradeBidsectionCount: 100,
     tradeProjectCount: 200,
-    coordinate: [116.405285, 39.904989],
+    coordinate: [113.280637, 23.125178],
   },
   {
-    name: "东城区",
-    tradeBidsectionCount: 80,
-    tradeProjectCount: 150,
-    coordinate: [116.416357, 39.928353],
+    name: "韶关市",
+    tradeBidsectionCount: 95,
+    tradeProjectCount: 190,
+    coordinate: [113.591544, 24.801322],
   },
   {
-    name: "西城区",
+    name: "深圳市",
     tradeBidsectionCount: 90,
     tradeProjectCount: 180,
-    coordinate: [116.366794, 39.915309],
+    coordinate: [114.085947, 22.547],
   },
   {
-    name: "朝阳区",
-    tradeBidsectionCount: 120,
-    tradeProjectCount: 240,
-    coordinate: [116.443108, 39.921489],
-  },
-  {
-    name: "海淀区",
-    tradeBidsectionCount: 150,
-    tradeProjectCount: 280,
-    coordinate: [116.298262, 39.959333],
-  },
-  {
-    name: "丰台区",
-    tradeBidsectionCount: 70,
-    tradeProjectCount: 160,
-    coordinate: [116.287149, 39.858427],
-  },
-  {
-    name: "石景山区",
-    tradeBidsectionCount: 50,
-    tradeProjectCount: 120,
-    coordinate: [116.222982, 39.906611],
-  },
-  {
-    name: "门头沟区",
-    tradeBidsectionCount: 40,
-    tradeProjectCount: 100,
-    coordinate: [116.102009, 39.940646],
-  },
-  {
-    name: "房山区",
-    tradeBidsectionCount: 45,
-    tradeProjectCount: 110,
-    coordinate: [116.143267, 39.749144],
-  },
-  {
-    name: "通州区",
+    name: "珠海市",
     tradeBidsectionCount: 85,
     tradeProjectCount: 170,
-    coordinate: [116.656435, 39.909946],
+    coordinate: [113.552724, 22.255899],
   },
   {
-    name: "顺义区",
-    tradeBidsectionCount: 60,
-    tradeProjectCount: 130,
-    coordinate: [116.654651, 40.130347],
+    name: "汕头市",
+    tradeBidsectionCount: 80,
+    tradeProjectCount: 160,
+    coordinate: [116.708463, 23.37102],
   },
   {
-    name: "昌平区",
+    name: "佛山市",
     tradeBidsectionCount: 75,
     tradeProjectCount: 150,
-    coordinate: [116.231204, 40.22066],
+    coordinate: [113.122717, 23.028762],
   },
   {
-    name: "大兴区",
-    tradeBidsectionCount: 65,
+    name: "江门市",
+    tradeBidsectionCount: 70,
     tradeProjectCount: 140,
-    coordinate: [116.341395, 39.726929],
+    coordinate: [113.094942, 22.590431],
   },
   {
-    name: "怀柔区",
-    tradeBidsectionCount: 35,
+    name: "湛江市",
+    tradeBidsectionCount: 65,
+    tradeProjectCount: 130,
+    coordinate: [110.364977, 21.274898],
+  },
+  {
+    name: "茂名市",
+    tradeBidsectionCount: 60,
+    tradeProjectCount: 120,
+    coordinate: [110.919229, 21.659751],
+  },
+  {
+    name: "肇庆市",
+    tradeBidsectionCount: 55,
+    tradeProjectCount: 110,
+    coordinate: [112.472529, 23.051546],
+  },
+  {
+    name: "惠州市",
+    tradeBidsectionCount: 50,
+    tradeProjectCount: 100,
+    coordinate: [114.412599, 23.079404],
+  },
+  {
+    name: "梅州市",
+    tradeBidsectionCount: 45,
     tradeProjectCount: 90,
-    coordinate: [116.631889, 40.316876],
+    coordinate: [116.117582, 24.299112],
   },
   {
-    name: "平谷区",
-    tradeBidsectionCount: 30,
+    name: "汕尾市",
+    tradeBidsectionCount: 40,
     tradeProjectCount: 80,
-    coordinate: [117.121383, 40.140701],
+    coordinate: [115.364238, 22.774485],
   },
   {
-    name: "密云区",
-    tradeBidsectionCount: 25,
+    name: "河源市",
+    tradeBidsectionCount: 35,
     tradeProjectCount: 70,
-    coordinate: [116.843352, 40.377362],
+    coordinate: [114.697802, 23.746266],
   },
   {
-    name: "延庆区",
-    tradeBidsectionCount: 20,
+    name: "阳江市",
+    tradeBidsectionCount: 30,
     tradeProjectCount: 60,
-    coordinate: [115.974848, 40.456951],
+    coordinate: [111.975107, 21.859222],
   },
+  {
+    name: "清远市",
+    tradeBidsectionCount: 25,
+    tradeProjectCount: 50,
+    coordinate: [113.051227, 23.685022],
+  },
+  {
+    name: "东莞市",
+    tradeBidsectionCount: 20,
+    tradeProjectCount: 40,
+    coordinate: [113.746262, 23.046237],
+  },
+  {
+    name: "中山市",
+    tradeBidsectionCount: 15,
+    tradeProjectCount: 30,
+    coordinate: [113.382391, 22.521113],
+  },
+  {
+    name: "潮州市",
+    tradeBidsectionCount: 10,
+    tradeProjectCount: 20,
+    coordinate: [116.632301, 23.661701],
+  },
+  {
+    name: "揭阳市",
+    tradeBidsectionCount: 5,
+    tradeProjectCount: 10,
+    coordinate: [116.355733, 23.543778],
+  },
+  {
+    name: "云浮市",
+    tradeBidsectionCount: 1,
+    tradeProjectCount: 2,
+    coordinate: [112.044439, 22.929801],
+  }
 ];
 
 let option = {
@@ -200,28 +223,22 @@ let option = {
       _rect: any,
       size: any
     ) {
-      var x = 0; // x坐标位置
-      var y = 0; // y坐标位置
-      // 当前鼠标位置
+      var x = 0;
+      var y = 0;
       var pointX = point[0];
       var pointY = point[1];
-      // 提示框大小
       var boxWidth = size.contentSize[0];
       var boxHeight = size.contentSize[1];
 
-      // boxWidth > pointX 说明鼠标左边放不下提示框
       if (boxWidth > pointX) {
         x = pointX + 10;
       } else {
-        // 左边放的下
         x = pointX - boxWidth - 10;
       }
 
-      // boxHeight > pointY 说明鼠标上边放不下提示框
       if (boxHeight > pointY) {
         y = 5;
       } else {
-        // 上边放得下
         y = pointY - boxHeight;
       }
       return [x, y];
@@ -234,25 +251,23 @@ let option = {
     },
     backgroundColor: "rgba(0,2,89,0.8)",
     formatter: function (params: any) {
-      // console.log(params)
-      var tipHtml = "";
-      tipHtml = `
-                    <div class="ui-map-img">
-                        <div class='ui-maptxt'>${params.name}</div>
-                        <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
-                        <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
-                    </div>
-                `;
+      var tipHtml = `
+        <div class="ui-map-img">
+            <div class='ui-maptxt'>${params.name}</div>
+            <div class='ui-mapNum'>标段数:${params.data.tradeBidsectionCount}</div>
+            <div class='ui-mapNum'>项目数:${params.data.tradeProjectCount}</div>
+        </div>
+      `;
       return tipHtml;
     },
   },
   geo: [
     {
-      map: "北京",
-      aspectScale: 1,
-      zoom: 0.65,
+      map: "广东",
+      aspectScale: 0.75,
+      zoom: 1.1,
       layoutCenter: ["50%", "50%"],
-      layoutSize: "180%",
+      layoutSize: "95%",
       show: true,
       roam: false,
       label: {
@@ -274,11 +289,11 @@ let option = {
   ],
   series: [
     {
-      name: "北京市数据",
+      name: "广东数据",
       type: "map",
-      map: "北京",
-      aspectScale: 1,
-      zoom: 0.65,
+      map: "广东",
+      aspectScale: 0.75,
+      zoom: 1.1,
       showLegendSymbol: true,
       label: {
         normal: {
@@ -322,11 +337,11 @@ let option = {
         },
       },
       layoutCenter: ["50%", "50%"],
-      layoutSize: "180%",
+      layoutSize: "95%",
       markPoint: {
         symbol: "none",
       },
-      data: mapBeijingData,
+      data: mapGuangDongData,
     },
   ],
 };
@@ -347,11 +362,11 @@ let option = {
   height: 100vh;
 }
 
-#chartBeijing {
+#chartGuangDong {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 }
-</style>
+</style> 
