@@ -148,6 +148,13 @@ onMounted(() => {
   padding: 12px;
   box-sizing: border-box;
   
+  :deep(.el-row) {
+    margin-bottom: 20px !important;
+  }
+
+  :deep(.el-col) {
+    margin-bottom: 20px;
+  }
 
   &__title {
     font-size: 16px;
