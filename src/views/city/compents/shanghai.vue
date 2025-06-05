@@ -185,7 +185,7 @@ var mapShangHaiData = [
     tradeBidsectionCount: 20,
     tradeProjectCount: 40,
     coordinate: [121.397516, 31.623758],
-  }
+  },
 ];
 
 let option = {
@@ -345,4 +345,4 @@ let option = {
   top: 0;
   left: 0;
 }
-</style> 
+</style>

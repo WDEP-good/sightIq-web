@@ -317,7 +317,7 @@ var mapChongQingData = [
     tradeBidsectionCount: 20,
     tradeProjectCount: 40,
     coordinate: [108.166551, 29.293856],
-  }
+  },
 ];
 
 let option = {
@@ -477,4 +477,4 @@ let option = {
   top: 0;
   left: 0;
 }
-</style> 
+</style>

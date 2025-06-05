@@ -10,7 +10,7 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import shandongjson from "@/assets/370000.json";
+import shandongjson from "@/assets/shandong.json";
 
 let myChart: echarts.ECharts | null = null;
 var index = 0; //播放所在下标
