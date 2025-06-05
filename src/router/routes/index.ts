@@ -30,6 +30,12 @@ let routes = [
     ],
   },
   {
+    path: "/analysis",
+    name: "analysis",
+    component: () => import("@/layouts/index.vue"),
+    props: true,
+  },
+  {
     path: "/Login",
     name: "Login",
     component: () => import("@/views/user/Login.vue"),

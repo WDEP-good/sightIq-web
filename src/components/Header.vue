@@ -15,10 +15,10 @@
         <span class="nav-text">路线规划</span>
       </el-col>
       <el-col :span="4.5" @click="goto('forecast')" class="text-center">
-        <span class="nav-text">预测预警</span>
+        <span class="nav-text">旅游社区</span>
       </el-col>
       <el-col :span="4.5" @click="goto('report')" class="text-center">
-        <span class="nav-text">统计报表</span>
+        <span class="nav-text">门票情况</span>
       </el-col>
       <el-col :span="4.5" class="text-center">
         {{ dayt.timeMonth }} {{ dayt.timemiao }}

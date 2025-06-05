@@ -13,11 +13,13 @@ import { computed } from "vue";
 import Header from "@/components/Header.vue";
 import DefaultLayout from "@/layouts/default.vue";
 import CityLayout from "@/layouts/cityLayout.vue";
+import AnalysisLayout from "@/layouts/AnalysisLayout.vue";
 
 const route = useRoute();
 
 const layout = computed(() => {
   if (route.params.cityId) return CityLayout;
+  if (route.name === "analysis") return AnalysisLayout;
   return DefaultLayout;
 });
 </script>
@@ -26,7 +28,6 @@ const layout = computed(() => {
 .layout-container {
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #003366, #001a33);
 
   .el-container {
     height: 100vh;
