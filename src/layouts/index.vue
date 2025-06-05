@@ -14,12 +14,14 @@ import Header from "@/components/Header.vue";
 import DefaultLayout from "@/layouts/default.vue";
 import CityLayout from "@/layouts/cityLayout.vue";
 import AnalysisLayout from "@/layouts/AnalysisLayout.vue";
+import ForecastLayout from "@/layouts/ForecastLayout.vue";
 
 const route = useRoute();
 
 const layout = computed(() => {
   if (route.params.cityId) return CityLayout;
   if (route.name === "analysis") return AnalysisLayout;
+  if (route.name === "forecast") return ForecastLayout;
   return DefaultLayout;
 });
 </script>

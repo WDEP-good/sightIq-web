@@ -36,6 +36,12 @@ let routes = [
     props: true,
   },
   {
+    path: "/forecast",
+    name: "forecast",
+    component: () => import("@/layouts/index.vue"),
+    props: true,
+  },
+  {
     path: "/Login",
     name: "Login",
     component: () => import("@/views/user/Login.vue"),
