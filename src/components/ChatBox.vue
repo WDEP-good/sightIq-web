@@ -1,20 +1,30 @@
 <template>
-  <BubbleList :list="list" max-height="100%" />
-  <Welcome
-    icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
-    title="欢迎使用查询旅游路线规划"
-    extra="旅游路线规划系统"
-    description="本系统提供了旅游路线规划、景点查询等功能，旨在帮助用户更好地规划旅行行程。"
-  />
-  <Sender
-    ref="senderRef"
-    v-model="senderValue"
-    :submit-btn-disabled="submitBtnDisabled"
-    :loading="senderLoading"
-    clearable
-    @submit="handleSubmit"
-    @cancel="handleCancel"
-  />
+  <div class="chat-box">
+    <el-row>
+      <el-col :span="24">
+        <BubbleList :list="list" height="100%" />
+        <Welcome
+          icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
+          title="欢迎使用查询旅游路线规划"
+          extra="旅游路线规划系统"
+          description="本系统提供了旅游路线规划、景点查询等功能，旨在帮助用户更好地规划旅行行程。"
+        />
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="24">
+        <Sender
+          ref="senderRef"
+          v-model="senderValue"
+          :submit-btn-disabled="submitBtnDisabled"
+          :loading="senderLoading"
+          clearable
+          @submit="handleSubmit"
+          @cancel="handleCancel"
+        />
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -66,9 +76,7 @@ function generateFakeItems(count: number): listType[] {
     const key = i + 1;
     const content =
       role === "ai"
-        ? "💖 感谢使用 Element Plus X ! 你的支持，是我们开源的最强动力 ~".repeat(
-            5
-          )
+        ? "感谢使用 Element Plus X ! 你的支持，是我们开源的最强动力 ~".repeat(5)
         : `哈哈哈，让我试试`;
     const loading = false;
     const shape = "corner";
@@ -92,7 +100,7 @@ function generateFakeItems(count: number): listType[] {
       typing, // 是否开启打字器效果 该属性不会和流式接受冲突
       isFog: role === "ai", // 是否开启打字雾化效果，该效果 v1.1.6 新增，且在 typing 为 true 时生效，该效果会覆盖 typing 的 suffix 属性
       avatar,
-      avatarSize: "24px", // 头像占位大小
+      avatarSize: "30px", // 头像占位大小
       avatarGap: "12px", // 头像与气泡之间的距离
     });
   }
@@ -100,4 +108,18 @@ function generateFakeItems(count: number): listType[] {
 }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.chat-box {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > :nth-child(1).el-row {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+</style>

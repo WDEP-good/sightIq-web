@@ -8,7 +8,7 @@ import AMapLoader from "@amap/amap-jsapi-loader";
 
 onMounted(() => {
   AMapLoader.load({
-    key: "", // 替换为你申请的Key
+    key: "e897de6affc39cf32fe33982b7692ea5", // 替换为你申请的Key
     version: "2.0", // SDK版本
     plugins: [], // 如需插件可填入，例如 ['AMap.Geocoder']
   })
@@ -24,3 +24,14 @@ onMounted(() => {
     });
 });
 </script>
+
+
+
+<style scoped lang="less">
+#container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+</style>
