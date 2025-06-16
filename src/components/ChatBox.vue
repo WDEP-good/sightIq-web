@@ -2,8 +2,9 @@
   <div class="chat-box">
     <el-row>
       <el-col :span="24">
-        <BubbleList :list="list" height="100%" />
+        <BubbleList :list="list" />
         <Welcome
+          v-if="!list.length"
           icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
           title="欢迎使用查询旅游路线规划"
           extra="旅游路线规划系统"
