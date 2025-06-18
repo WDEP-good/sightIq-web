@@ -10,12 +10,12 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import shaanxijson from "@/assets/610000.json";
+import sanxijson from "@/assets/sanxi.json";
 
 let myChart: echarts.ECharts | null = null;
 var index = 0; //播放所在下标
 
-echarts.registerMap("陕西", shaanxijson as any);
+echarts.registerMap("陕西", sanxijson as any);
 
 onMounted(() => {
   myChart = echarts.init(document.getElementById("chartShaanXi"));

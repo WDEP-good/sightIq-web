@@ -32,7 +32,7 @@ onMounted(() => {
   setTimeout(() => {
     if (myChart) {
       myChart.hideLoading();
-      myChart.setOption(option, true)
+      myChart.setOption(option, true);
     }
   }, 1000);
 
@@ -79,7 +79,7 @@ var mapMacaoData = [
     name: "全市",
     tradeBidsectionCount: 100,
     tradeProjectCount: 200,
-    coordinate: [113.549090, 22.198951],
+    coordinate: [113.54909, 22.198951],
   },
   {
     name: "花地玛堂区",
@@ -135,7 +135,13 @@ let option = {
   backgroundColor: "transparent",
   tooltip: {
     trigger: "item",
-    position: function (point: any, _params: any, _dom: any, _rect: any, size: any) {
+    position: function (
+      point: any,
+      _params: any,
+      _dom: any,
+      _rect: any,
+      size: any
+    ) {
       var x = 0;
       var y = 0;
       var pointX = point[0];
@@ -184,7 +190,7 @@ let option = {
       roam: true,
       scaleLimit: {
         min: 0.8,
-        max: 2
+        max: 2,
       },
       label: {
         emphasis: {
@@ -261,7 +267,7 @@ let option = {
       roam: true,
       scaleLimit: {
         min: 0.8,
-        max: 2
+        max: 2,
       },
     },
   ],
@@ -290,4 +296,4 @@ let option = {
   top: 0;
   left: 0;
 }
-</style> 
+</style>

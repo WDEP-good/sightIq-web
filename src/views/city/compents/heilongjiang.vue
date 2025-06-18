@@ -10,7 +10,7 @@
 import * as echarts from "echarts";
 import { onMounted, onUnmounted } from "vue";
 // @ts-ignore
-import heilongjiangjson from "@/assets/230000.json";
+import heilongjiangjson from "@/assets/heilongjiang.json";
 
 // 在组件初始化时就注册地图数据
 echarts.registerMap("黑龙江", heilongjiangjson as any);
